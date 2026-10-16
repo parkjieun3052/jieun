@@ -1,6 +1,6 @@
-import accept as a
-import counselor as c
-import patient as p
+import registe.python.accept as a
+import registe.python.counselor as c
+import registe.python.patient as p
 
 # ── [1단계: 공통 이름표 정의] ──
 counselor_prompts = ["name", "license", "self-introduction"]

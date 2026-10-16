@@ -1,6 +1,6 @@
 # 상담자 전용
 # 1. 목록 조회
-import accept as a
+import registe.python.accept as a
 
 # 상담사 정보 출력
 def print_maker_c(i, c_user, prompt_list):

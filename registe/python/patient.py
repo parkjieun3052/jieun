@@ -1,5 +1,5 @@
 # 내담자 전용
-import accept as a
+import registe.python.accept as a
 
 # 내담자 정보 출력
 def print_maker_p(i, p_user, prompt_list):
