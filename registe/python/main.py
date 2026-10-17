@@ -2,44 +2,34 @@ import registe.python.accept as a
 import registe.python.counselor as c
 import registe.python.patient as p
 
-# ── [1단계: 공통 이름표 정의] ──
-counselor_prompts = ["name", "license", "self-introduction"]
-patient_prompts = ["name", "counseling"]
+counselor_list=[]
+patient_list =[]
+
+counselor_prompt = ["이름","보유자격증","활동경력","간단한 자기소개"]
+patient_prompt = ["이름","생년월일","상담요청내용"]
+# 등록할 때 사용할 입력 항목 정의
+# register_manager(prompt_list, target_list, success_msg)
+#상담사 등록에 필요 - 상담사 등록 버튼에 연결할 것
+a.register_manager(counselor_prompt,counselor_list,"등록 완료")
+
+#내담자 등록에 필요 - 내담자 등록 버튼에 연결할 것
+a.register_manager(patient_prompt,patient_list,"상담신청이 완료 되었습니다.")
+
+# 상담사 목록을 화면에 표시하는 함수
+
+#전체 상담사 조회하기 버튼에 연결할 것
+c.all_counselor_list(counselor_list,counselor_prompt)
+
+#자격증 별 상담사 조회하기 버튼에 연결할 것
+c.show_license_list(counselor_prompt)
+
+#키워드로 검색하기 <input id="keyword-input> 태그에 연결할 것
+c.search_word(counselor_list,counselor_prompt)
+#  함수 안의 print_maker_c가 검색결과 화면에 들어갈 것
 
 
-# ── [2단계: 메인 루프 시작] ──
-while True:
-    print("\n" + "="*10 + " 상담 연계 시스템 메뉴 " + "="*10)
-    print("1. 상담사 등록")
-    print("2. 내담자 등록")
-    print("3. 자격증별 상담사 조회")
-    print("4. 상담사 키워드 검색")
-    print("5. 프로그램 종료")
-    print("="*41)
-    
-    choice = input("원하시는 기능의 번호를 입력하세요: ")
-    
-    # ── [3단계: 선택에 따른 함수 호출 연결] ──
-    if choice == "1":
-        # 💡 아까 만든 마스터 등록 함수 호출
-        a.register_manager(counselor_prompts, a.counselor_list, "🎉 상담사 등록이 완료되었습니다.")
-        
-    elif choice == "2":
-        # 💡 내담자 등록 함수 호출
-        a.register_manager(patient_prompts, a.patient_list, "🎉 상담 신청이 완료되었습니다.")
-        
-    elif choice == "3":
-        # 💡 자격증별 목록 출력 함수 호출 (이름표 함께 전달)
-        c.show_license_list(counselor_prompts)
-        
-    elif choice == "4":
-        # 💡 상담사 검색 함수 호출
-        c.search_word(a.counselor_list, counselor_prompts)
-        
-    elif choice == "5":
-        print("\n👋 프로그램을 종료합니다. 이용해 주셔서 감사합니다.")
-        # 💡 무한 루프를 탈출하여 프로그램을 끝냅니다.
-        break 
-        
-    else:
-        print("⚠️ 잘못된 입력입니다. 1번부터 5번 사이의 숫자를 입력해 주세요.")
+# 상담사 전용 page 
+
+# 내담자 조회기능
+p.all_patient_list(patient_list,patient_prompt)
+# 함수안의 print_maker_p가 결과 조회 화면에 연결될 것

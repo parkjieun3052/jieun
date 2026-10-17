@@ -5,7 +5,7 @@ const counselor_list = [];
 const patient_list = [];
 
 // 공통 등록기능 ([질문, 등록], 추가할 리스트, 완료메세지)
-function register_manager(prompt_list, target_list, success_msg) {
+export function register_manager(prompt_list, target_list, success_msg) {
 const gather = {};
 let empty = false; // 빈칸 체크
 
