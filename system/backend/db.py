@@ -27,9 +27,16 @@ def init_db():
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
-            password TEXT NOT NULL
+            password TEXT NOT NULL,
+            role TEXT NOT NULL DEFAULT 'patient'
+
         )
         '''
+    )
+
+    cursor.execute(
+        "INSERT OR IGNORE INTO users (name, password, role) VALUES (?, ?, ?)",
+        ("dmb06130", "1234", "patient")
     )
     conn.commit()
     conn.close()
@@ -37,12 +44,12 @@ def init_db():
 
 # 사용자 추가 함수
 # 회원가입 시 name, password를 DB에 삽입합니다.
-def insert_user(name, password):
+def insert_user(name, password, role):
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
-        "INSERT INTO users (name, password) VALUES (?, ?)",
-        (name, password),
+        "INSERT INTO users (name, password,role) VALUES (?, ?,?)",
+        (name, password, role),
     )
     conn.commit()
     conn.close()
@@ -73,6 +80,7 @@ def select_all_users():
             'id': row['id'],
             'name': row['name'],
             'password': row['password'],
+            'role': row['role'],
         }
         for row in users
     ]

@@ -36,11 +36,11 @@ def add_user():
     data = request.get_json(silent=True) or {}
     name = (data.get('name') or data.get('username') or data.get('userid') or '').strip()
     password = (data.get('password') or '').strip()
-
+    role = (data.get('memberType') or data.get('role') or 'patient').strip()
     if not name or not password:
         return jsonify({'message': '이름과 비밀번호를 모두 입력해주세요.'}), 400
 
-    insert_user(name, password)
+    insert_user(name, password, role)
     return jsonify({'message': f'{name}님 회원가입이 완료되었습니다.'})
 
 
@@ -71,6 +71,7 @@ def login():
         'user': {
             'id': user['id'],
             'name': user['name'],
+            'role': user['role'],
         }
     })
 
