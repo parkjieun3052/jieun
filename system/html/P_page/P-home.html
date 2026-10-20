@@ -1,0 +1,120 @@
+<!-- 내담자 홈 페이지 -->
+<!--로그인 정보 중 회원유형이 '내담자'인 경우 보여줄 메인 화면-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내담자 홈</title>
+    <style>
+        #mood-section{
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #dae5b9;
+        }
+        #mood-section p{
+            margin: 0 0 10px 0;
+            color: #04240d;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="patient-home">
+        <h1>내담자 홈</h1>
+        <p>내담자 전용 페이지 입니다.</p>
+        <section id="mood-section">
+            <h3>오늘의 마음 상태</h3>
+            <p>오늘의 마음 상태를 기록해보세요.</p>
+            <input type="radio" name="mood" value="happy"> 행복
+            <input type="radio" name="mood" value="neutral"> 보통
+            <input type="radio" name="mood" value="sad"> 슬픔
+            <input type="radio" name="mood" value="angry"> 화남
+            <input type="radio" name="mood" value="anxious"> 불안 <br><br>
+            <button type="button" onclick="alert('마음 상태가 기록되었습니다.')">기록하기</button>
+        </section>
+
+        <section>
+            <h3>나의 상담 일정</h3>
+            <p>내담자의 상담 일정이 여기에 표시됩니다.</p><br>
+            <p>이전 상담 내역</p>
+            <ul>
+
+            </ul>
+        </section><hr>
+
+        <section>
+            <h3>추천 상담사</h3>
+            <p>내가 입력한 정보와 상담사의 프로필을 기반으로 추천된 상담사가 여기에 표시됩니다.</p>
+        </section><hr>
+
+        <section id="search-section">
+            <h2>상담사 검색하기</h2>
+
+            <div class="button-group">
+                <button id="all-counselor-search" type="button">전체 상담사 조회하기</button>
+                <button id="license-list-search" type="button">자격증별 상담사 조회하기</button>
+            </div>
+        </section>
+
+        <section id="result-section">
+            <h5>조회 결과</h5>
+            <div id="result">
+                <p>조회 결과가 여기에 표시됩니다.</p>
+            </div>
+        </section>
+
+        <section id="keyword-search-section">
+            <form id="searchform">
+                <h4>키워드로 검색하기</h4>
+                <input id="keyword-input" type="text" placeholder="키워드를 입력하세요">
+                <button type="submit">검색</button>
+            </form>
+            <div id="keyword-result" style="margin-top: 12px;">
+                <p>키워드 검색 결과가 여기에 표시됩니다.</p>
+            </div>
+        </section><hr>
+
+        <section>
+            <h3>내 주변 상담센터</h3>
+
+            <form id="center-search-form">
+                <input
+                type="text"
+                id="center-search-input"
+                placeholder="예: 심리상담센터, 청소년상담센터"
+                required
+                >           </form>
+
+            <button id="my-location-btn" type="button">내 위치 찾기</button>
+
+            <button id="search-center-btn" type="button">주변 상담센터 검색</button>
+            
+            <p id="location-status">검색어를 입력해주세요</p>
+            <!--지도-->
+            <div id="map" style="width:500px;height:400px;"></div>
+            <!--검색 결과 목록-->
+            <ul id="center-list"></ul>
+        </section><hr>
+            <!-- 1. 카카오맵 SDK 먼저 로드 -->
+            <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=d76a40a301a3c50b42e5991d2f659ebe&libraries=services,clusterer,drawing"></script>
+
+            <!-- 2. 지도 생성 코드 실행 -->
+            <script src="../../javascript/map.js"></script>
+                    <section>
+                <h3>정부 지원 사업 정보</h3>
+                <p>내담자가 이용할 수 있는 정부 지원 사업 정보가 여기에 표시됩니다.</p>
+                <!--오픈 api를 통해 제공되는 정부 지원 사업 연결하기-->
+            </section>
+    </div>
+
+    <script src="../../javascript/map.js" defer></script>
+    <script src="../../javascript/accept.js"></script>
+    <script src="../../javascript/counselor.js"></script>
+    <script src="../../javascript/inquiry.js"></script>
+    <script src="../../javascript/patient.js"></script>
+    <script src="../../javascript/main.js"></script>
+
+</body>
+</html>

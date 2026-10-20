@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상담사 등록 페이지</title>
+</head>
+<body>
+    <h1>상담사 등록</h1>
+    <p>상담사 등록 페이지 입니다. 정보를 입력 해주세요</p>
+    <form id="counselor-form">
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="license">보유자격증:</label>
+        <input type="text" id="license" name="license" required><br><br>
+        <label for="experience">활동경력:</label>
+        <input type="text" id="experience" name="experience" required><br><br>
+        <label for="introduction">간단한 자기소개:</label>
+        <textarea id="introduction" name="introduction" required></textarea><br><br>
+        <button type="submit">등록</button>
+    </form>
+    <script>
+        const counselorForm = document.getElementById('counselor-form');
+
+        counselorForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const password = 'temp-password';
+
+            if (!name) {
+                alert('이름을 입력해주세요.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/add_user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        password: password,
+                        userid: name,
+                    }),
+                });
+
+                const result = await response.json();
+                if (!response.ok) {
+                    throw new Error(result.message || '등록 실패');
+                }
+
+                alert(result.message || '등록되었습니다.');
+                location.href = '../C_page/C-home.html';
+            } catch (error) {
+                alert(error.message || '서버 연결에 실패했습니다.');
+            }
+        });
+    </script>
+</body>
+</html>

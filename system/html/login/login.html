@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+</head>
+<body>
+    <h1>로그인</h1>
+    <section>
+        <form id="login-form">
+            아이디 : <input type="text" name="userid"><br><br>
+            비밀번호 : <input type="password" name="password"><br><br>
+            <button id="login-button" type="submit">로그인</button><br><br>
+        </form>
+    </section>
+    <section>
+        <p>아직 회원이 아니신가요? <a href="sign_up.html">회원가입</a></p>
+    </section>
+    <section>
+        <p>비밀번호를 잊으셨나요? <a href="reset_password.html">비밀번호 재설정</a></p>
+    </section>
+
+    <script>
+        const loginForm = document.getElementById('login-form');
+
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const userid = document.querySelector('input[name="userid"]').value.trim();
+            const password = document.querySelector('input[name="password"]').value.trim();
+
+            if (!userid || !password) {
+                alert('아이디와 비밀번호를 입력해주세요.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userid: userid,
+                        password: password,
+                    }),
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.message || '로그인에 실패했습니다.');
+                }
+
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('loginUser', result.user.name || userid);
+
+                const params = new URLSearchParams(window.location.search);
+                const redirectUrl = params.get('redirect') || '../index.html';
+                location.href = redirectUrl;
+            } catch (error) {
+                alert(error.message || '서버 연결에 실패했습니다.');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!-- 상담사 홈 페이지 -->
+<!--로그인 정보 중 회원유형이 '상담사'인 경우 보여줄 메인 화면-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상담사 홈</title>
+    <style>
+        #counselor-home {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        section {
+            margin-bottom: 20px;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+        h3{
+            color:rgb(4, 73, 73)
+        }
+    </style>
+</head>
+<body>
+    <div id="counselor-home">
+        <h1>상담사 홈</h1>
+        <p>상담사 전용 페이지 입니다.</p><hr>
+        <section id="counselor-profile">
+            <h3>나의 프로필</h3>
+            <!--Registration/counselor.html에서 작성된 프로필 정보 표시-->
+            <p>이곳에 상담사의 프로필이 표시됩니다.</p>
+            <button type="button">프로필 수정</button>
+        </section><hr>
+        <section id="today-schedule">
+            <h3>오늘의 상담 일정</h3>
+            <p>오늘 예정된 상담 일정이 여기에 표시됩니다.</p>
+        </section><hr>
+        <section id="my-patients">
+            <h3>나의 내담자 확인하기</h3>
+            <button type="button">내담자 목록 보기</button>
+            <p>나의 내담자 목록이 여기에 표시됩니다.</p>
+        </section><hr>
+        <section id="reservation-management">
+            <h3>상담 예약 관리</h3>
+            <p>상담 예약 승인, 변경 등이 여기에 표시됩니다.</p>
+        </section><hr>
+        <section id="available-time">
+            <h3>상담 가능 시간 설정</h3>
+            <input type="time" name="available-time">
+            <button type="button">시간 설정</button>
+            <p>상담 가능 시간이 여기에 표시됩니다.</p>
+        </section><hr>
+        <section id="revenue-settlement">
+            <h3>수익 및 정산 내역</h3>
+            <p>상담사의 수익 및 정산내역이 여기에 표시됩니다.</p>
+        </section>
+    </div>
+</body>
+</html>
