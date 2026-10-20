@@ -16,6 +16,8 @@ from db import (
 
 app = Flask(__name__)
 
+# 서버가 시작될 때 데이터베이스 테이블과 테스트 계정을 준비합니다.
+init_db()
 
 @app.after_request
 def add_cors_headers(response):
