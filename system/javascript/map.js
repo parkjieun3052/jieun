@@ -215,6 +215,41 @@ document
 const searchForm = document.getElementById("center-search-form");
 const searchInput = document.getElementById("center-search-input");
 
+function resetMapSession() {
+    if (searchInput) {
+        searchInput.value = "";
+    }
+
+    if (statusText) {
+        statusText.textContent = "검색어를 입력해주세요";
+    }
+
+    if (centerList) {
+        centerList.replaceChildren();
+    }
+
+    if (myMarker) {
+        myMarker.setMap(null);
+        myMarker = null;
+    }
+
+    if (centerMarkers.length) {
+        centerMarkers.forEach(function (marker) {
+            marker.setMap(null);
+        });
+        centerMarkers = [];
+    }
+
+    myPosition = null;
+
+    if (map && window.kakao && window.kakao.maps) {
+        map.setCenter(new kakao.maps.LatLng(37.5665, 126.9780));
+        map.setLevel(5);
+    }
+}
+
+window.resetMapSession = resetMapSession;
+
 // 검색 버튼을 누르거나 Enter를 누르면 실행
 searchForm.addEventListener("submit", function (event) {
     // 폼 제출로 페이지가 새로고침되는 것을 방지

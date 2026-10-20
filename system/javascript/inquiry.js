@@ -108,6 +108,16 @@
         renderResult(html, 'keyword-result');
     }
 
+    // 6) 상담사 정보 리셋하기
+    function reset_counselor_list() {
+        const resetButton = document.getElementById('reset-button');
+        if (resetButton) {
+            resetButton.addEventListener('click', () => {
+                renderResult('', 'result');
+                renderResult('', 'keyword-result');
+            });
+        }
+    }
     // 브라우저 전역 객체에 함수들을 연결해서 다른 JS에서 호출할 수 있게 만듭니다.
     window.counselor = Object.assign(window.counselor || {}, {
         all_counselor_list,

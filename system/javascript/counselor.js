@@ -23,6 +23,8 @@ const counselorApp = (() => {
         `;
     }
 
+
+
     // 상담사 전체 목록 조회
     function all_counselor_list(target_list, prompt_list) {
         if (!target_list.length) {
